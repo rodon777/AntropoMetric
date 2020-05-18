@@ -4,9 +4,9 @@ source('function.R')
 shinyUI(fluidPage(
   
   
-  tabsetPanel(tabPanel("All Data",
+  tabsetPanel(tabPanel("Datos",
                        titlePanel("Tabla Antropométrica para la Estimación de Estatura (mm)"),
-                       fileInput('file1', 'Choose CSV file', accept=c('text/csv', 'text/comma-separated-values,text/plain')),
+                       fileInput('file1', 'Importar archivo CSV', accept=c('text/csv', 'text/comma-separated-values,text/plain')),
                        
                        fluidRow(column(tableOutput("RawData"),width = 12))
   ),
@@ -48,6 +48,26 @@ shinyUI(fluidPage(
              h3("Box Plot"),
              plotOutput("plot")
            )
+           
+  ),
+  tabPanel("Ayuda",
+           mainPanel(
+             sidebarPanel(width = 12,h3("Instrucciones de uso"),
+                  helpText("Esta aplicación necesita de un archivo csv separado por comas codificado en formato UTF-8.",
+                      "La tabla de datos ha de constar con 11 columnas enumeradas en el siguiente orden:"),
+                 h5( helpText("IND : numero, sigla o ID del individuo"),
+                  helpText("LMH : Longitud Máxima de Húmero"),
+                  helpText("LMC : Longitud Máxima de Cúbito"),
+                  helpText("LFC : Longitud Fisiológica de Cúbito"),
+                  helpText("LMR : Longitud Máxima de Radio"),
+                  helpText("LFR : Longitud Fisilógica de Radio"),
+                  helpText("LMF : Longitud Máxima de Fémur"),
+                  helpText("LFF : Longitud Fisiológica de Fémur"),
+                  helpText("LT  : Longitud de Tibia"),
+                  helpText("LMP : Longitud Máxima de Peroné"),
+                  helpText("Lat : Lateralidad de la unidad")),
+                  helpText("Mendoça, M.C. (2000) Estimation of Height from the Length of Long Bones in a Portuguese Adult Population. AJPA 112: 39-48")
+           ))
            
   )
   
